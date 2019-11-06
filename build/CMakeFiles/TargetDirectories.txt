@@ -1,0 +1,3 @@
+/mnt/d/OneDrive/Codes/CodesForHomework/GMM_CPP/build/CMakeFiles/rebuild_cache.dir
+/mnt/d/OneDrive/Codes/CodesForHomework/GMM_CPP/build/CMakeFiles/GMM.dir
+/mnt/d/OneDrive/Codes/CodesForHomework/GMM_CPP/build/CMakeFiles/edit_cache.dir

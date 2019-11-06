@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 2.8)
+project( GMM )
+find_package( OpenCV REQUIRED )
+add_executable( GMM main.cpp )
+target_link_libraries( GMM ${OpenCV_LIBS} ${catkin_LIBRARIES} pthread )
