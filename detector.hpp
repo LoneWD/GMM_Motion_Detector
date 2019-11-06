@@ -23,10 +23,10 @@ class Detector {
         }
         current_frame_id_++;
         result_ = cv::Mat::zeros(height, width, CV_8UC1);
-        /*for (auto p : assignment_list_) {
+        for (auto p : assignment_list_) {
             Process(p, frame);
-        }*/
-        for (int i = 0; i < assignment_list_.size(); i += 4) {
+        }
+        /*for (int i = 0; i < assignment_list_.size(); i += 4) {
             auto &v = assignment_list_;
             std::thread thread1(test, v[i], frame);
             std::thread thread2(test, v[i], frame);
@@ -36,7 +36,7 @@ class Detector {
             thread2.join();
             thread3.join();
             thread4.join();
-        }
+        }*/
         return result_;
     }
 
