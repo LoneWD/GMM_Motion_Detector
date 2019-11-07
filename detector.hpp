@@ -71,6 +71,7 @@ class Detector {
         int x = P.first, y = P.second;
         if (current_frame_id_ <= history_) {
             bool have_matched = false;
+            #pragma omp parallel for
             for (int k = 0; k < n_mixtures_; k++) {
                 bool is_matched = true;
                 for (int c = 0; c < 3; c++) {

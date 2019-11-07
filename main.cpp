@@ -24,7 +24,7 @@ int main() {
         //std::cout << int(fgmask.at<cv::Vec3b>(180, 120)[0]) << std::endl;
         cv::morphologyEx(fgmask, fgmask, cv::MORPH_OPEN, cv::Mat::ones(5, 3, CV_64F));
         auto font = cv::FONT_HERSHEY_SIMPLEX;
-        cv::putText(fgmask, std::to_string(cnt), {5, 30}, font, 1.2, (255), 2);
+        cv::putText(fgmask, std::to_string(cnt), {3, 18}, font, 0.6, (255), 2);
         cv::Mat result;
         cv::cvtColor(fgmask, fgmask, cv::COLOR_GRAY2RGB);
         cv::hconcat(fgmask, frame, result);
@@ -37,6 +37,8 @@ int main() {
         }
         if (k == 27) {
             break;
+        } else if(k == 32) {
+            cv::waitKey(0);
         }
     }
     cap.release();
