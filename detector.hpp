@@ -28,28 +28,16 @@ class Detector {
             auto p = assignment_list_[i];
             Process(p, frame);
         }
-
-        /*for (int i = 0; i < assignment_list_.size(); i += 4) {
-            auto &v = assignment_list_;
-            std::thread thread1(test, v[i], frame);
-            std::thread thread2(test, v[i], frame);
-            std::thread thread3(test, v[i], frame);
-            std::thread thread4(test, v[i], frame);
-            thread1.join();
-            thread2.join();
-            thread3.join();
-            thread4.join();
-        }*/
         return result_;
     }
 
    private:
     vector<std::pair<int, int>> assignment_list_;
-    float alpha_ = 0.1;
+    float alpha_ = 0.02;
     float lambda_ = 3;
     unsigned int current_frame_id_ = 0;
     unsigned int history_ = 10;
-    unsigned int n_mixtures_ = 5;
+    unsigned int n_mixtures_ = 8;
     cv::Mat result_;
     FourDimsVector gaussian_models_;
     void InitGms(const cv::Mat &frame) {
@@ -106,14 +94,14 @@ class Detector {
                             min_important = sort_key;
                             to_delete = i;
                         }
-                        gaussian_models_[x][y].erase(gaussian_models_[x][y].begin() + i);
-                        vector<GM> new_gm;
-                        for (int c = 0; c < 3; c++) {
-                            int pixel = frame.at<cv::Vec3b>(x, y)[c];
-                            new_gm.push_back(GM(0.1, pixel, 450));
-                        }
-                        gaussian_models_[x][y].push_back(std::move(new_gm));
                     }
+                    gaussian_models_[x][y].erase(gaussian_models_[x][y].begin() + to_delete);
+                    vector<GM> new_gm;
+                    for (int c = 0; c < 3; c++) {
+                        int pixel = frame.at<cv::Vec3b>(x, y)[c];
+                        new_gm.push_back(GM(0.01, pixel, 400));
+                    }
+                    gaussian_models_[x][y].push_back(std::move(new_gm));
                 }
                 float sum = 0;
                 for (int k = 0; k < n_mixtures_; k++) {

@@ -14,7 +14,7 @@ private:
 
 public:
     GM() {}
-    GM(const float weight, const float mean, const float variance) {
+    GM(float weight, float mean, float variance) {
         weight_ = std::move(weight);
         mean_ = std::move(mean);
         variance_ = std::move(variance);
